@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nabin ❤️ Mayaboti - Eternal Love</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <style>
+      :root {
+        --primary-color: #ff0066;
+        --secondary-color: #ff99cc;
+        --accent-color: #ff4081;
+        --bg-gradient: linear-gradient(135deg, #ffe6f2 0%, #ffd1e6 100%);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg-gradient);
+        font-family: 'Dancing Script', cursive;
+        line-height: 1.8;
+        overflow-x: hidden;
+        position: relative;
+        touch-action: manipulation;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Date & Time Display */
+      #currentDateTime {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 1rem;
+        color: var(--primary-color);
+        background: rgba(255, 255, 255, 0.9);
+        padding: 0.6rem 1rem;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(255, 0, 102, 0.1);
+        z-index: 1000;
+        width: max-content;
+        text-align: center;
+        backdrop-filter: blur(5px);
+      }
+
+      /* Enhanced Love Timer */
+      #loveTimer {
+        font-size: 2rem;
+        color: var(--primary-color);
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 20px;
+        box-shadow: 0 0 40px rgba(255, 0, 102, 0.1);
+        animation: heartbeat 1.5s infinite;
+        margin: 2rem 0;
+        backdrop-filter: blur(5px);
+        text-align: center;
+      }
+
+      @keyframes heartbeat {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.03);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* Diary Section */
+      .diary-section {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 2rem;
+        margin: 3rem 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        position: relative;
+        backdrop-filter: blur(5px);
+      }
+
+      .diary-entry {
+        font-size: 1.2rem;
+        color: #444;
+        margin: 1.5rem 0;
+        padding-left: 2.5rem;
+        position: relative;
+        animation: fadeIn 1s ease-out;
+      }
+
+      .diary-entry::before {
+        content: '💖';
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size: 1.3rem;
+        animation: float 3s infinite;
+      }
+
+      /* Portrait Gallery */
+      .swiper {
+        width: 100%;
+        height: 60vh;
+        margin: 3rem 0;
+      }
+
+      .swiper-slide {
+        width: 280px;
+        height: 450px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        transition: transform 0.5s ease;
+      }
+
+      .swiper-slide:hover {
+        transform: scale(1.05);
+      }
+
+      .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Enhanced Love Button */
+      .love-button {
+        position: fixed;
+        bottom: 120px;
+        right: 20px;
+        padding: 1rem 1.5rem;
+        font-size: 1.3rem;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        box-shadow: 0 8px 15px rgba(255, 0, 102, 0.3);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transform-origin: center;
+      }
+
+      .love-button:hover {
+        transform: scale(1.05);
+        background: var(--accent-color);
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(255, 0, 102, 0.4);
+        }
+        70% {
+          box-shadow: 0 0 0 15px rgba(255, 0, 102, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(255, 0, 102, 0);
+        }
+      }
+
+      /* Music Controls */
+      .music-controls {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 0.8rem;
+        border-radius: 25px;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        box-shadow: 0 0 15px rgba(255, 0, 102, 0.1);
+        z-index: 1000;
+        backdrop-filter: blur(5px);
+      }
+
+      .music-controls button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.1rem;
+        color: var(--primary-color);
+        transition: transform 0.3s ease;
+        padding: 0.5rem;
+      }
+
+      .volume-slider {
+        width: 80px;
+        accent-color: var(--primary-color);
+      }
+
+      /* Advanced Animations */
+      .emoji-container {
+        position: fixed;
+        pointer-events: none;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: 9998;
+      }
+
+      .emoji {
+        position: absolute;
+        animation: float 8s linear infinite;
+        opacity: 0;
+        font-size: 1.2rem;
+        filter: drop-shadow(0 0 5px rgba(255, 0, 102, 0.3));
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(110vh) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-10vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .love-message {
+        position: fixed;
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        animation: loveFloat 8s linear infinite;
+        text-shadow: 0 0 10px rgba(255, 0, 102, 0.3);
+        z-index: 10000;
+        pointer-events: none;
+        white-space: nowrap;
+      }
+
+      @keyframes loveFloat {
+        0% {
+          transform: translateX(-100vw) translateY(100vh) rotate(-10deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(100vw) translateY(-100vh) rotate(10deg);
+          opacity: 0;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 1rem;
+        }
+
+        #loveTimer {
+          font-size: 1.3rem;
+          padding: 1rem;
+          margin: 1rem 0;
+        }
+
+        .swiper {
+          height: 50vh;
+          margin: 2rem 0;
+        }
+
+        .swiper-slide {
+          width: 220px;
+          height: 350px;
+        }
+
+        .diary-entry {
+          font-size: 1rem;
+          padding-left: 2rem;
+          margin: 1rem 0;
+        }
+
+        .music-controls {
+          bottom: 70px;
+          right: 50%;
+          transform: translateX(50%);
+          width: max-content;
+        }
+
+        .love-button {
+          bottom: 140px;
+          right: 50%;
+          transform: translateX(50%);
+          font-size: 1.2rem;
+          padding: 0.8rem 1.2rem;
+        }
+
+        #currentDateTime {
+          bottom: 10px;
+          font-size: 0.9rem;
+          padding: 0.5rem 0.8rem;
+        }
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Music Controls -->
+      <div class="music-controls">
+        <button onclick="togglePlay()" id="playBtn">▶️</button>
+        <input
+          type="range"
+          class="volume-slider"
+          min="0"
+          max="1"
+          step="0.1"
+          value="1"
+          oninput="setVolume(this.value)"
+        />
+      </div>
+
+      <!-- Love Button -->
+      <button class="love-button" onclick="showLove()">💖 I Love You</button>
+
+      <!-- Date & Time -->
+      <div id="currentDateTime"></div>
+
+      <!-- Header Section -->
+      <div class="header">
+        <div id="loveTimer"></div>
+      </div>
+
+      <!-- Diary Section -->
+      <div class="diary-section">
+        <div class="diary-entry">
+          From our first conversation on January 31, 2024, I knew you were
+          special. Your smile lit up my world like the first morning of spring
+          From the moment I laid eyes on you, I knew my heart had found its
+          home. Your smile, your laughter, and the warmth in your eyes made me
+          realize I’d found something truly special. You became my Mayaboti from
+          that very first glance, and every day since, my love for you has only
+          grown deeper. 🌸
+        </div>
+        <div class="diary-entry">
+          You are my peace in chaos, my joy in moments of sorrow. When I’m with
+          you, the world feels right, and nothing else matters. Every time you
+          call me, you fill my life with so much meaning, and every shared
+          moment feels like a new dream coming true. You’re not just my love;
+          you’re my best friend and my soulmate.
+        </div>
+        <div class="diary-entry">
+          The love we share is something rare and beautiful. It’s in the way we
+          laugh together, the way we support each other, and how we’ve built a
+          future together. Every time I hold your hand, I feel like I’ve found
+          the one person I’ll never let go of, the one person who makes life
+          worth living.
+        </div>
+        <div class="diary-entry">
+          Mayaboti, you are my everything. From today to forever, I promise to
+          love you with all my heart. With you by my side, I know that we can
+          face anything, and I can’t wait to continue building our life and
+          dreams together.
+        </div>
+      </div>
+
+      <!-- Image Gallery -->
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="memory1.jpg" alt="💕💕" />
+          </div>
+          <div class="swiper-slide">
+            <img src="memory2.jpg" alt="💕💕" />
+          </div>
+          <div class="swiper-slide">
+            <img src="memory3.jpg" alt="💕💕" />
+          </div>
+          <div class="swiper-slide">
+            <img src="memory4.jpg" alt="💕💕" />
+          </div>
+          <div class="swiper-slide">
+            <img src="memory5.jpg" alt="💕💕" />
+          </div>
+          <div class="swiper-slide">
+            <img src="memory6.jpg" alt="💕💕" />
+          </div>
+          <div class="swiper-slide">
+            <img src="memory7.jpg" alt="💕💕" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="backgroundMusic" loop>
+      <source src="ed-sheeran-perfect.mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- Animation Containers -->
+    <div class="emoji-container"></div>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+      // Initialize Music with user interaction
+      const audio = document.getElementById('backgroundMusic');
+      let audioEnabled = false;
+
+      function enableAudio() {
+        if (!audioEnabled) {
+          audio.volume = 1.0;
+          audio.play();
+          audioEnabled = true;
+          document.body.removeEventListener('click', enableAudio);
+          document.body.removeEventListener('touchstart', enableAudio);
+        }
+      }
+      document.body.addEventListener('click', enableAudio);
+      document.body.addEventListener('touchstart', enableAudio);
+
+      // Date & Time
+      function updateDateTime() {
+        const options = {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+        };
+        document.getElementById('currentDateTime').textContent =
+          new Date().toLocaleDateString('en-US', options);
+      }
+      setInterval(updateDateTime, 1000);
+
+      // Love Timer
+      function updateTimer() {
+        const startDate = new Date('2024-01-31');
+        const now = new Date();
+        const diff = now - startDate;
+
+        const format = (num) => num.toString().padStart(2, '0');
+        const seconds = format(Math.floor(diff / 1000) % 60);
+        const minutes = format(Math.floor(diff / (1000 * 60)) % 60);
+        const hours = format(Math.floor(diff / (1000 * 60 * 60)) % 24);
+        const days = format(Math.floor(diff / (1000 * 60 * 60 * 24)) % 365);
+        const years = format(Math.floor(diff / (1000 * 60 * 60 * 24 * 365)));
+
+        document.getElementById(
+          'loveTimer'
+        ).innerHTML = `💞 ${years} Years ${days} Days<br>${hours}h ${minutes}m ${seconds}s 💞`;
+      }
+      setInterval(updateTimer, 1000);
+
+      // Swiper Gallery
+      const swiper = new Swiper('.swiper', {
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        loop: true,
+        autoplay: { delay: 3000 },
+        coverflowEffect: {
+          rotate: 5,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true,
+        },
+      });
+
+      // Enhanced Love Button Function
+      function showLove() {
+        const loveMessages = [
+          'I Love You More Than Anything 💖',
+          "You're Perfect in Every Way 🌸",
+          'My Soulmate Forever 💍',
+          'You Complete Me 💞',
+          'My Heart Beats for You 💓',
+          'Eternally Yours 💕',
+          "You're My Forever Love 💘",
+          'My Everything 💝',
+        ];
+
+        const message =
+          loveMessages[Math.floor(Math.random() * loveMessages.length)];
+
+        const loveMessage = document.createElement('div');
+        loveMessage.className = 'love-message';
+        loveMessage.textContent = message;
+        loveMessage.style.left = `-${message.length * 10}px`;
+        loveMessage.style.top = `${Math.random() * 100}%`;
+        document.body.appendChild(loveMessage);
+
+        // Auto-remove after animation
+        setTimeout(() => loveMessage.remove(), 100000);
+      }
+
+      // Music Controls
+      function togglePlay() {
+        if (audio.paused) {
+          audio.play();
+          document.getElementById('playBtn').textContent = '⏸️';
+        } else {
+          audio.pause();
+          document.getElementById('playBtn').textContent = '▶️';
+        }
+      }
+
+      function setVolume(volume) {
+        audio.volume = volume;
+      }
+
+      // Emoji Animation
+      const emojis = ['❤️', '💖', '💕', '😍', '🥰', '🌸', '💞', '🌹'];
+      function createEmoji() {
+        const emoji = document.createElement('div');
+        emoji.className = 'emoji';
+        emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        emoji.style.left = Math.random() * 100 + 'vw';
+        emoji.style.fontSize = Math.random() * 15 + 15 + 'px';
+        emoji.style.animationDuration = Math.random() * 3 + 5 + 's';
+        document.querySelector('.emoji-container').appendChild(emoji);
+        setTimeout(() => emoji.remove(), 8000);
+      }
+      setInterval(createEmoji, 250);
+    </script>
+  </body>
+</html>
